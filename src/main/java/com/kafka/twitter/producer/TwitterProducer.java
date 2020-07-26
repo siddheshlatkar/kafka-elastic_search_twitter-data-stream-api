@@ -1,4 +1,4 @@
-package com.github.kafka.twitter.producer;
+package com.kafka.twitter.producer;
 
 import com.google.common.collect.Lists;
 
