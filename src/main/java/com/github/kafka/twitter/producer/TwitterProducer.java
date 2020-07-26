@@ -1,4 +1,4 @@
-package com.github.twitter;
+package com.github.kafka.twitter.producer;
 
 import com.google.common.collect.Lists;
 
@@ -19,8 +19,6 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import sun.awt.windows.ThemeReader;
 
 import java.util.List;
 import java.util.Properties;
