@@ -1,5 +1,7 @@
 package com.kafka.elasticsearch.consumer;
 
+import com.google.gson.JsonParser;
+
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -10,6 +12,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.protocol.types.Field;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -27,6 +30,8 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class ElasticSearchConsumer {
+
+  private static JsonParser jsonParser = new JsonParser();
 
   public static RestHighLevelClient createClient(){
 
@@ -80,15 +85,28 @@ public class ElasticSearchConsumer {
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
 
       for (ConsumerRecord<String, String> record : records) {
-        IndexRequest indexRequest = new IndexRequest("twitter", "tweets").source(record.value(), XContentType.JSON);
+
+        String id = extractIdFromTweet(record.value());
+        IndexRequest indexRequest = new IndexRequest(
+                "twitter",
+                "tweets",
+                id
+        ).source(record.value(), XContentType.JSON);
         IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
-        String id = indexResponse.getId();
-        logger.info(id);
+        logger.info(indexResponse.getId());
         Thread.sleep(1000);
       }
     }
 
     //client.close();
+  }
+
+  private static String extractIdFromTweet(String tweetJson) {
+    return jsonParser.parse(tweetJson)
+            .getAsJsonObject()
+            .get("id_str")
+            .getAsString();
+
   }
 
 }
