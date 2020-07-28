@@ -29,10 +29,10 @@ import java.util.concurrent.TimeUnit;
 public class TwitterProducer {
 
   Logger logger = LoggerFactory.getLogger(TwitterProducer.class.getName());
-  String consumerKey = "EnlZ0RU1bZzGZXob32GeyPFbW";
-  String consumerSecret = "pKkoQdSzJboSaI7pmIz4Edf7XW4DQXA7F7tAPxlbNOyqSAE7gv";
-  String token = "3000839670-q6VC0ojcIPsVG8l4bDtsG6gD8N60fttv3LkXeSq";
-  String secret = "sXYrp2Gxy8v1W6HuMRp4g9X8EmVPfjcekjoZXwvOQ3vAi";
+  String consumerKey = "EnlZ0RU1bZzGZXob32GeyPFbW"; // Expired
+  String consumerSecret = "pKkoQdSzJboSaI7pmIz4Edf7XW4DQXA7F7tAPxlbNOyqSAE7gv"; // Expired
+  String token = "3000839670-q6VC0ojcIPsVG8l4bDtsG6gD8N60fttv3LkXeSq"; // Expired
+  String secret = "sXYrp2Gxy8v1W6HuMRp4g9X8EmVPfjcekjoZXwvOQ3vAi"; // Expired
   List<String> terms = Lists.newArrayList("covid");
 
   public static void main(String[] args) {

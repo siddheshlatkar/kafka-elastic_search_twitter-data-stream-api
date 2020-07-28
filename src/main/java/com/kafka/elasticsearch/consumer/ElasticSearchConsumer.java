@@ -35,9 +35,9 @@ public class ElasticSearchConsumer {
 
   public static RestHighLevelClient createClient(){
 
-    String hostname = "kafka-course-870175616.us-east-1.bonsaisearch.net";
-    String username = "3jbbyxk9p9";
-    String password = "w7wfj1e7k0";
+    String hostname = "kafka-course-870175616.us-east-1.bonsaisearch.net"; // Expired
+    String username = "3jbbyxk9p9"; // Expired
+    String password = "w7wfj1e7k0"; // Expired
 
     // credentials provider help supply username and password
     final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
